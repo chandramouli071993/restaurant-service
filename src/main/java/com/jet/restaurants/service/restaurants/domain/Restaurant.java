@@ -1,9 +1,10 @@
 package com.jet.restaurants.service.restaurants.domain;
 
 import lombok.*;
-import org.apache.kafka.common.protocol.types.Field;
 
 import javax.persistence.*;
+
+import static javax.persistence.EnumType.STRING;
 
 @Entity
 @AllArgsConstructor
@@ -13,8 +14,8 @@ import javax.persistence.*;
 public class Restaurant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column
     @Getter
@@ -42,20 +43,12 @@ public class Restaurant {
 
     @Column
     @Getter
-    @Enumerated
+    @Setter
+    @Enumerated(STRING)
     private Status status;
 
     public static Restaurant create(String name, String city, String addressLine1, String addressLine2, String zipCode, String country, Status status) {
-        val restaurant = builder()
-                .name(name)
-                .status(status)
-                .addressLine1(addressLine1)
-                .addressLine2(addressLine2)
-                .zipCode(zipCode)
-                .city(city)
-                .country(country)
-                .build();
-
+        val restaurant = builder().name(name).status(status).addressLine1(addressLine1).addressLine2(addressLine2).zipCode(zipCode).city(city).country(country).build();
         return restaurant;
     }
 
