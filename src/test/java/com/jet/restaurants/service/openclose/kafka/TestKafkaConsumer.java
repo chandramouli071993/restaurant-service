@@ -37,6 +37,7 @@ import java.util.Map;
 @SpringBootTest(classes = {TestKafkaConsumer.Config.class, RestaurantEventInboundService.class})
 @EmbeddedKafka(partitions = 1, controlledShutdown = true)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled
 class TestKafkaConsumer {
 
     @MockBean
