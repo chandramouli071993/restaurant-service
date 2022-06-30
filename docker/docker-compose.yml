@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:11.6
+    container_name: restaurant-status-pg
+    restart: always
+    environment:
+      POSTGRES_USER: justeat
+      POSTGRES_PASSWORD: justeat
+      POSTGRES_DB: restaurant-status-db
+    ports:
+      - 9001:5432
+    volumes:
+      - pg-data-rest:/var/lib/postgresql/data
+volumes:
+  pg-data-rest:
